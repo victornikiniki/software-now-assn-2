@@ -6,6 +6,6 @@ This repository includes the assignment brief and files as well as the solution 
 ### Group members: 
 - Vibhi Singh 408619
 - Udit Vachhani 408762
-- Shreeya Niraula 
-- Mohd Ratib 
+- Shreeya Niraula 408727
+- Mohd Ratib 408795
 
