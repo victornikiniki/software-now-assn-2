@@ -66,4 +66,47 @@ def encrypt_file(shift1, shift2, input_path, output_path):
 shift1 = get_valid_shift_value("shift1")
 shift2 = get_valid_shift_value("shift2")
 
+def decrypt_file(shift1, shift2, input_path, output_path):
+
+    with open(input_path, "r") as f:
+        content = f.read()
+
+    decrypted_text = ""
+
+    for i in content:
+
+        if "a" <= i <= "n":
+            decrypted_i = shift_character(
+                i, -(shift1 * shift2), "a", 14
+            )
+
+        elif "o" <= i <= "z":
+            decrypted_i = shift_character(
+                i, shift1 + shift2, "o", 12
+            )
+
+        elif "A" <= i <= "M":
+            decrypted_i = shift_character(
+                i, shift1, "A", 13
+            )
+
+        elif "N" <= i <= "Z":
+            decrypted_i = shift_character(
+                i, -(shift2 ** 2), "N", 13
+            )
+
+        elif "0" <= i <= "9":
+            decrypted_i = shift_character(
+                i, -(shift1 - shift2), "0", 10
+            )
+
+        else:
+            decrypted_i = i
+
+        decrypted_text += decrypted_i
+
+    with open(output_path, "w") as f:
+        f.write(decrypted_text)
+        
 encrypt_file(shift1, shift2, "raw_text.txt", "encrypted_text.txt")
+decrypt_file(shift1, shift2, "encrypted_text.txt", "decrypted_text.txt")
