@@ -107,6 +107,21 @@ def decrypt_file(shift1, shift2, input_path, output_path):
 
     with open(output_path, "w") as f:
         f.write(decrypted_text)
+
+def verify_files(original_path, decrypted_path):
+
+    with open(original_path, "r") as f:
+        original_content = f.read()
+
+    with open(decrypted_path, "r") as f:
+        decrypted_content = f.read()
+
+    return original_content == decrypted_content
         
 encrypt_file(shift1, shift2, "raw_text.txt", "encrypted_text.txt")
 decrypt_file(shift1, shift2, "encrypted_text.txt", "decrypted_text.txt")
+
+if verify_files("raw_text.txt", "decrypted_text.txt"):
+    print("Verification successful!")
+else:
+    print("Verification failed!")
