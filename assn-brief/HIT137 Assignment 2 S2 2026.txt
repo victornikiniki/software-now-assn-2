@@ -8,7 +8,7 @@ assignment.
 Submission Guidelines:
 • Include your GitHub Repository link in a text file “github_link.txt”.
 • Zip all the programming files and outputs and “github_link.txt” and upload them
-to Learline.
+to Learnline.
 Late submissions: A late submission penalty of 5% of the total available marks per day
 will apply.
 Question 1
