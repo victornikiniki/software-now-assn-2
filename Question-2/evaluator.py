@@ -102,3 +102,23 @@ def parse_primary(
     else:
         # Reject tokens that cannot start a primary expression.
         raise ValueError("Expected a number or opening parenthesis")
+
+
+def parse_power(
+    tokens: list[tuple[str, str]],
+    position: int
+) -> tuple[tuple, int]:
+    # Parse the base expression on the left side of the exponentiation.
+    left_tree, position = parse_primary(tokens, position)
+
+    # Check whether the next token is an exponentiation operator.
+    if tokens[position][0] == "OP" and tokens[position][1] == "^":
+        position += 1
+
+        # Parse the right operand through unary parsing.
+        right_tree, position = parse_unary(tokens, position)
+
+        # Build the exponentiation tree from both operands.
+        left_tree = ("^", left_tree, right_tree)
+
+    return left_tree, position
