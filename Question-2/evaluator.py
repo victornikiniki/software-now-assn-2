@@ -74,3 +74,31 @@ def format_tokens(tokens: list[tuple[str, str]]) -> str:
             formatted_tokens.append(f"[{token_type}:{token_value}]")
 
     return " ".join(formatted_tokens)
+
+
+def parse_primary(
+    tokens: list[tuple[str, str]],
+    position: int
+) -> tuple[tuple, int]:
+    token_type, token_value = tokens[position]
+
+    if token_type == "NUM":
+        # Convert a number token into a number tree node.
+        number_tree = ("num", float(token_value))
+        return number_tree, position + 1
+
+    elif token_type == "LPAREN":
+        # Parse the expression inside the parenthesised expression.
+        position += 1
+        inner_tree, position = parse_expression(tokens, position)
+
+        # Check that the parenthesised expression has a closing parenthesis.
+        if tokens[position][0] != "RPAREN":
+            raise ValueError("Expected closing parenthesis")
+
+        position += 1
+        return inner_tree, position
+
+    else:
+        # Reject tokens that cannot start a primary expression.
+        raise ValueError("Expected a number or opening parenthesis")
