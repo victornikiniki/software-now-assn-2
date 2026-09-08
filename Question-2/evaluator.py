@@ -61,3 +61,16 @@ def tokenize(expression: str) -> list[tuple[str, str]]:
     # Mark the end of the token sequence for the parser.
     tokens.append(("END", ""))
     return tokens
+
+
+def format_tokens(tokens: list[tuple[str, str]]) -> str:
+    formatted_tokens = []
+
+    # Format each token using the output format required by the assignment.
+    for token_type, token_value in tokens:
+        if token_type == "END":
+            formatted_tokens.append("[END]")
+        else:
+            formatted_tokens.append(f"[{token_type}:{token_value}]")
+
+    return " ".join(formatted_tokens)
