@@ -122,3 +122,22 @@ def parse_power(
         left_tree = ("^", left_tree, right_tree)
 
     return left_tree, position
+
+
+def parse_unary(
+    tokens: list[tuple[str, str]],
+    position: int
+) -> tuple[tuple, int]:
+    token_type, token_value = tokens[position]
+
+    if token_type == "OP" and token_value == "-":
+        # Recognise a unary minus before an operand.
+        position += 1
+
+        # Recursively parse the operand to support repeated negation.
+        operand_tree, position = parse_unary(tokens, position)
+        return ("neg", operand_tree), position
+
+    else:
+        # Pass non-negated expressions to the power parser.
+        return parse_power(tokens, position)
