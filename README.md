@@ -26,3 +26,20 @@ Question 1 implements file encryption, decryption, and verification using the sp
 * `raw_text.txt` - Input text file
 * `encrypted_text.txt` - Encrypted output
 * `decrypted_text.txt` - Decrypted output
+
+## Question 2
+
+**Completed by:**
+
+- Shreeya Niraula - 408727
+- Mohd Ratib - 408795
+
+Question 2 implements a mathematical expression evaluator using recursive descent parsing, including tokenisation, expression trees, operator precedence, evaluation, and formatted output.
+
+### Files
+
+- `evaluator.py` - Solution code for Question 2
+- `input.txt` - Input expressions
+- `output.txt` - Evaluation output
+- `sample_input.txt` - Sample input provided with the assignment
+- `sample_output.txt` - Expected sample output provided with the assignment
